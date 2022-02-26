@@ -2,11 +2,11 @@ package com.example.ezetapassisgnment.util
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.Gravity
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.marginTop
 import androidx.core.widget.addTextChangedListener
 import com.example.ezetapassisgnment.MainActivity
 import com.example.ezetapassisgnment.R
@@ -26,9 +26,15 @@ object GetUI {
                 val typeface = ResourcesCompat.getFont(context, R.font.robotocondensedlight)
                 text.typeface = typeface
                 text.textSize = 18f
-                val param = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-                    setMargins(0,20,0,0)
+                text.setTextColor(Color.parseColor("#000000"))
+                val param = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(0, 20, 0, 0)
                 }
+                text.tag = type.key
+                text.letterSpacing = 0.02f
                 text.layoutParams = param
                 llLayout.addView(text)
             }
@@ -36,25 +42,38 @@ object GetUI {
                 val edit = EditText(context)
                 edit.hint = type.hint
                 llLayout.addView(edit)
+                edit.tag = type.key
+                edit.letterSpacing = 0.02f
                 edit.addTextChangedListener {
                     type.value = it.toString()
-                    Log.d(TAG, "getView: "+type.value)
+                    Log.d(TAG, "getView: " + type.value)
                 }
             }
             "button" -> {
                 val button = Button(context)
                 button.text = type.value
-                button.setOnClickListener{
-                    Toast.makeText(context,"Clicked",Toast.LENGTH_SHORT).show()
-                    context.startActivity(Intent(context, SecondActivity::class.java).putExtra("data", Gson().toJson(uidata)))
-                    (context as MainActivity).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                button.setOnClickListener {
+                    Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
+                    context.startActivity(
+                        Intent(
+                            context,
+                            SecondActivity::class.java
+                        ).putExtra("data", Gson().toJson(uidata))
+                    )
+                    (context as MainActivity).overridePendingTransition(
+                        R.anim.slide_in_right,
+                        R.anim.slide_out_left
+                    )
                 }
                 val typeface = ResourcesCompat.getFont(context, R.font.roboto_condensed_regular)
                 button.typeface = typeface
-                val param = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
+                val param = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
                     weight = 1.0f
                     gravity = Gravity.CENTER_HORIZONTAL
-                    setMargins(0,100,0,0)
+                    setMargins(0, 100, 0, 0)
                 }
                 button.layoutParams = param
                 llLayout.addView(button)
@@ -68,10 +87,16 @@ object GetUI {
                 val text = TextView(context)
                 text.text = type.value
                 llLayout.addView(text)
-                val typeface = ResourcesCompat.getFont(context, R.font.robotocondensedlight)
+                val typeface = ResourcesCompat.getFont(context, R.font.roboto_condensed_regular)
                 text.typeface = typeface
-                val param = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-                    setMargins(0,0,0,0)
+                text.textSize = 18f
+                text.letterSpacing = 0.02f
+                text.setTextColor(Color.parseColor("#000000"))
+                val param = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(0, 0, 0, 0)
                 }
                 text.layoutParams = param
             }
@@ -81,8 +106,14 @@ object GetUI {
                 llLayout.addView(text)
                 val typeface = ResourcesCompat.getFont(context, R.font.robotocondensedlight)
                 text.typeface = typeface
-                val param = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply {
-                    setMargins(0,20,0,50)
+                text.textSize = 18f
+                text.letterSpacing = 0.02f
+                text.setTextColor(Color.parseColor("#000000"))
+                val param = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    setMargins(0, 20, 0, 50)
                 }
                 text.layoutParams = param
             }
